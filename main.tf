@@ -56,7 +56,7 @@ variable "gcp_region" {
 resource "google_compute_instance" "web_server" {
   count        = 1
   name         = "aj-iacm-instance-${count.index}"
-  machine_type = "e2-small"
+  machine_type = "e2-micro"
   zone         = "${var.gcp_region}-c"
 
   boot_disk {
