@@ -65,12 +65,12 @@ resource "google_compute_instance" "web_server" {
     }
   }
 
-#  network_interface {
-#    network = "default"
-#    access_config {
-#      // An empty access_config block assigns an ephemeral public IP.
-#    }
-#  }
+  network_interface {
+    network = "default"
+    access_config {
+      // An empty access_config block assigns an ephemeral public IP.
+    }
+  }
 
   // Add metadata for potential startup scripts or SSH keys
   metadata = {
