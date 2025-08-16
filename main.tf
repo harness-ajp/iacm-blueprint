@@ -65,12 +65,12 @@ resource "google_compute_instance" "web_server" {
     }
   }
 
-  network_interface {
-    network = "default"
-    access_config {
-      // An empty access_config block assigns an ephemeral public IP.
-    }
-  }
+#  network_interface {
+#    network = "default"
+#    access_config {
+#      // An empty access_config block assigns an ephemeral public IP.
+#    }
+#  }
 
   // Add metadata for potential startup scripts or SSH keys
   metadata = {
@@ -89,12 +89,12 @@ output "instance_names" {
   value       = google_compute_instance.web_server[*].name
 }
 
-output "instance_public_ips" {
-  description = "The public IP addresses of the created instances."
-  value       = google_compute_instance.web_server[*].network_interface[0].access_config[0].nat_ip
-}
+#output "instance_public_ips" {
+#  description = "The public IP addresses of the created instances."
+#  value       = google_compute_instance.web_server[*].network_interface[0].access_config[0].nat_ip
+#}
 
-output "instance_private_ips" {
-  description = "The private IP addresses of the created instances."
-  value       = google_compute_instance.web_server[*].network_interface[0].network_ip
-}
+#output "instance_private_ips" {
+#  description = "The private IP addresses of the created instances."
+#  value       = google_compute_instance.web_server[*].network_interface[0].network_ip
+#}
