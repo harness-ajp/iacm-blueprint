@@ -18,7 +18,7 @@ provider "azurerm" {
 #### Variables #####
 variable "subscription_id" {
    type        = string
-   description = "Azure Subscription"
+   description = "Azure Subscriptions"
 }
 
 variable "tenant_id" {
