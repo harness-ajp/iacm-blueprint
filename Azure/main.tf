@@ -15,6 +15,19 @@ provider "azurerm" {
   tenant_id = var.tenant_id
 }
 
+#### Variables #####
+variable "subscription_id" {
+   type        = string
+   description = "Azure Subscription"
+}
+
+variable "tenant_id" {
+   type        = string
+   description = "Azure Tenant within a subscription"
+}
+
+
+
 # 1. Create a Resource Group
 # All Azure resources must be placed in a resource group.
 resource "azurerm_resource_group" "rg" {
