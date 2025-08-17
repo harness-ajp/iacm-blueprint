@@ -17,13 +17,13 @@ provider "azurerm" {
 # All Azure resources must be placed in a resource group.
 resource "azurerm_resource_group" "rg" {
   name     = "aj-iacm-rg"
-  location = "eastus" # This is the Azure region name for "East US".
+  location = "westus" 
 }
 
 # 2. Create a Virtual Network (VNet)
 # The VMs need a network to communicate.
 resource "azurerm_virtual_network" "vnet" {
-  name                = "tofu-vnet"
+  name                = "aj-iacm-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
