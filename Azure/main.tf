@@ -83,13 +83,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
     azurerm_network_interface.nic[count.index].id,
   ]
 
-  disable_password_authentication = true
   # This section defines authentication using an SSH public key.
   # Make sure you have a key at the specified path or update the path.
-  #admin_ssh_key {
-  #  username   = "azureuser"
-  #  public_key = file("~/.ssh/id_rsa.pub")
-  #}
+  admin_ssh_key {
+    username   = "azureuser"
+    #public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("Azure/id_rsa.pub")
+  }
 
   # This defines the OS disk for the VM.
   os_disk {
