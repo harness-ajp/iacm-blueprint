@@ -11,6 +11,8 @@ terraform {
 # Authentication is handled automatically via the Azure CLI, environment variables, or a managed identity.
 provider "azurerm" {
   features {}
+  subscription_id = var.subscription_id
+  tenant_id = var.tenant_id
 }
 
 # 1. Create a Resource Group
