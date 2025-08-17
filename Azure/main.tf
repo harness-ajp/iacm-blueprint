@@ -70,10 +70,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   # This section defines authentication using an SSH public key.
   # Make sure you have a key at the specified path or update the path.
-  admin_ssh_key {
-    username   = "azureuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
+  #admin_ssh_key {
+  #  username   = "azureuser"
+  #  public_key = file("~/.ssh/id_rsa.pub")
+  #}
 
   # This defines the OS disk for the VM.
   os_disk {
