@@ -41,6 +41,12 @@ variable "gcp_region" {
   default     = "us-east1"
 }
 
+variable "node_count" {
+  type        = string
+  description = "Number of Nodes for this environment"
+  default     = "1"
+}
+
 ##################################################################################
 # Resource: Google Compute Instance
 #
