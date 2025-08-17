@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-# Configure the Microsoft Azure Provider.
+# Configures the Microsoft Azure Provider.
 # Authentication is handled automatically via the Azure CLI, environment variables, or a managed identity.
 provider "azurerm" {
   features {}
