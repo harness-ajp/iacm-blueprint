@@ -26,6 +26,12 @@ variable "tenant_id" {
    description = "Azure Tenant within a subscription"
 }
 
+variable "admin_public_key" {
+  type        = string
+  description = "The SSH public key for the admin user on the VM."
+  sensitive   = true # Marks this variable as sensitive in Tofu/Terraform logs
+}
+
 
 
 # 1. Create a Resource Group
@@ -88,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_ssh_key {
     username   = "azureuser"
     #public_key = file("~/.ssh/id_rsa.pub")
-    public_key = file("Azure/id_rsa.pub")
+    public_key = var.admin_public_key
   }
 
   # This defines the OS disk for the VM.
