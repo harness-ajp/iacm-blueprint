@@ -21,6 +21,9 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "aws_access_key_id" {}
+variable "aws_secret_access_key" {}
+
 # -----------------------------------------------------------------------------
 # DATA SOURCE - Find the latest Amazon Linux 2 AMI
 # -----------------------------------------------------------------------------
