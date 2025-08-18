@@ -63,6 +63,6 @@ resource "aws_instance" "tiny_nodes" {
   # The 'count.index' starts at 0, so we add 1 to make the names
   # more human-friendly (e.g., node-1, node-2).
   tags = {
-    Name = "aj-iacm-instance-${count.index + 1}"
+    Name = "aj-iacm-instance-${count.index}"
   }
 }
