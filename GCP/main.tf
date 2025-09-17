@@ -48,15 +48,54 @@ variable "node_count" {
 }
 
 ##################################################################################
+# Firewall Rules
+#
+# Creates firewall rules to allow common internet access patterns
+##################################################################################
+
+resource "google_compute_firewall" "allow_http" {
+  name    = "aj-iacm-allow-http"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["http-server"]
+}
+
+resource "google_compute_firewall" "allow_https" {
+  name    = "aj-iacm-allow-https"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["https-server"]
+}
+
+resource "google_compute_firewall" "allow_ssh" {
+  name    = "aj-iacm-allow-ssh"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["ssh-server"]
+}
+
+##################################################################################
 # Resource: Google Compute Instance
 #
-# Provisions two e2-micro virtual machines.
-# - count = 2: Creates two identical instances from this single resource block.
-# - name: Uses count.index to create unique names (e.g., "instance-0", "instance-1").
-# - machine_type: "e2-micro" is a small, cost-effective shared-core machine type.
-# - zone: Dynamically places the instances in the "-b" zone of the specified region.
-# - boot_disk: Uses the latest Debian 12 image.
-# - network_interface: Attaches to the default VPC and assigns an ephemeral public IP.
+# Provisions e2-standard-2 virtual machine with internet access.
 ##################################################################################
 
 resource "google_compute_instance" "web_server" {
@@ -64,6 +103,7 @@ resource "google_compute_instance" "web_server" {
   name         = "aj-iacm-instance-${count.index}"
   machine_type = "e2-standard-2"
   zone         = "${var.gcp_region}-c"
+  
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-12"
@@ -77,12 +117,16 @@ resource "google_compute_instance" "web_server" {
     }
   }
 
+  // Add network tags for firewall rules
+  tags = ["http-server", "https-server", "ssh-server"]
+
   // Add metadata for potential startup scripts or SSH keys
   metadata = {
     "created-by" = "opentofu"
   }
-// Added so we can resize instance types
-allow_stopping_for_update = true
+
+  // Added so we can resize instance types
+  allow_stopping_for_update = true
 }
 
 ##################################################################################
@@ -96,12 +140,12 @@ output "instance_names" {
   value       = google_compute_instance.web_server[*].name
 }
 
-#output "instance_public_ips" {
-#  description = "The public IP addresses of the created instances."
-#  value       = google_compute_instance.web_server[*].network_interface[0].access_config[0].nat_ip
-#}
+output "instance_public_ips" {
+  description = "The public IP addresses of the created instances."
+  value       = google_compute_instance.web_server[*].network_interface[0].access_config[0].nat_ip
+}
 
-#output "instance_private_ips" {
-#  description = "The private IP addresses of the created instances."
-#  value       = google_compute_instance.web_server[*].network_interface[0].network_ip
-#}
+output "instance_private_ips" {
+  description = "The private IP addresses of the created instances."
+  value       = google_compute_instance.web_server[*].network_interface[0].network_ip
+}
