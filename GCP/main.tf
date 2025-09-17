@@ -92,6 +92,19 @@ resource "google_compute_firewall" "allow_ssh" {
   target_tags   = ["ssh-server"]
 }
 
+resource "google_compute_firewall" "allow_custom_4440" {
+  name    = "aj-iacm-allow-4440"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["4440"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["custom-4440"]
+}
+
 ##################################################################################
 # Resource: Google Compute Instance
 #
