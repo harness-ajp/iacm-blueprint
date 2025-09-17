@@ -64,7 +64,6 @@ resource "google_compute_instance" "web_server" {
   name         = "aj-iacm-instance-${count.index}"
   machine_type = "e2-standard-2"
   zone         = "${var.gcp_region}-c"
-
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-12"
@@ -82,6 +81,8 @@ resource "google_compute_instance" "web_server" {
   metadata = {
     "created-by" = "opentofu"
   }
+// Added so we can resize instance types
+allow_stopping_for_update = true
 }
 
 ##################################################################################
