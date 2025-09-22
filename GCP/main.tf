@@ -114,7 +114,7 @@ resource "google_compute_firewall" "allow_custom_4440" {
 resource "google_compute_instance" "web_server" {
   count        = 1
   name         = "aj-iacm-instance-${count.index}"
-  machine_type = "e2-standard-2"
+  machine_type = "e2-micro"
   zone         = "${var.gcp_region}-c"
   
   boot_disk {
