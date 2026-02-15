@@ -1,6 +1,6 @@
 nxos_host     = "https://sbx-nxos-mgmt.cisco.com"
-nxos_username = ""
-nxos_password = ""
+nxos_username = "<+secrets.getValue(\"cisco-devnet-username#nxos_username\")>"
+nxos_password = "<+secrets.getValue(\"cisco-devnet-password#nxos_password\")>"
 
 vlans = {
   mgmt = {
