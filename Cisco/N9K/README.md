@@ -1,7 +1,8 @@
 ## OpenTofu and Networking
 
 # Background
-This example OpenTofu project will provision networks to a Nexus 9K
+This example OpenTofu project will provision networks to a Nexus 9K.  
+NOTE: !!! This repostiory, is currently setup to be used in a Harness workspace. !!!
 
 # Setup
 1.) Install [OpenTofu](https://opentofu.org/)
@@ -18,8 +19,6 @@ tofu init
 tofu plan
 tofu apply
 ```
-
-
 
 # N9K-CORE-1 Cruise Ship Network Status
 You can check the status of the network by executing the check_status.sh script.
