@@ -4,19 +4,26 @@
 This example OpenTofu project will provision networks to a Nexus 9K
 
 # Setup
-1.) Sign up here for access to free resources:  https://developer.cisco.com/site/sandbox/
+1.) Install [OpenTofu](https://opentofu.org/)
+ **OR** a platform that supports OpenTofu like [Harness](https://harness.io/)
 
-2.) In the file terraform.tfvars update variables `nxos_username` and `nxos_password`
+2.) Sign up here for access to free resources:  https://developer.cisco.com/site/sandbox/
 
-# Ex
+3.) In the file `terraform.tfvars` update variables `nxos_username` and `nxos_password`
+
+# Tofu Execution Steps
+Execute the following Tofu commands
+```bash
 tofu init
 tofu plan
 tofu apply
+```
 
-You can check the status of the network by executing the check_status.sh script.
-Output will look like this:
+
 
 # N9K-CORE-1 Cruise Ship Network Status
+You can check the status of the network by executing the check_status.sh script.
+Output will look similar to this:
 
 ## VLANs (Bridge Domains)
 
