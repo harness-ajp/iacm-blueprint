@@ -4,14 +4,12 @@ variable "nxos_host" {
 }
 
 variable "nxos_username" {
-  default = "<+secrets.getValue(\"cisco-devnet-username#nxos_username\")>"
   type    = string
 }
 
 variable "nxos_password" {
-  default = "<+secrets.getValue(\"cisco-devnet-password#nxos_password\")>"
   type    = string
-  sensitive = true
+#  sensitive = true
 }
 
 variable "vlans" {
