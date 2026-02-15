@@ -4,14 +4,14 @@ variable "nxos_host" {
 }
 
 variable "nxos_username" {
-  description = "NX-OS username"
-  type        = string
+  default = "<+secrets.getValue(\"cisco-devnet-username#nxos_username\")>"
+  type    = string
 }
 
 variable "nxos_password" {
-  description = "NX-OS password"
-  type        = string
-  sensitive   = true
+  default = "<+secrets.getValue(\"cisco-devnet-password#nxos_password\")>"
+  type    = string
+  sensitive = true
 }
 
 variable "vlans" {
