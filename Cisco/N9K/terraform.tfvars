@@ -1,6 +1,15 @@
 #nxos_host     = "https://sbx-nxos-mgmt.cisco.com"
+
+# With Harness Secrets
 #nxos_username = "<+secrets.getValue(\"cisco-devnet-username\")>"
 #nxos_password = "<+secrets.getValue(\"cisco-devnet-password\")>"
+
+# Runnign outside Harness
+#nxos_username = "REQUIRES_INPUT"
+#nxos_password = "REQUIRES_INPUT"
+
+
+
 
 vlans = {
   mgmt = {
