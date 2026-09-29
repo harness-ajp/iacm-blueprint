@@ -53,7 +53,7 @@ data "aws_ami" "amazon_linux_2" {
 # This resource block provisions the AWS EC2 instances.
 resource "aws_instance" "tiny_nodes" {
   # 'count = 2' tells OpenTofu to create two identical instances from this block.
-  count = 1
+  count = 2
 
   # AMI ID is dynamically sourced from our data block above.
   ami = data.aws_ami.amazon_linux_2.id
